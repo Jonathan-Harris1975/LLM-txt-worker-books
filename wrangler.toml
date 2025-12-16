@@ -1,4 +1,4 @@
-name = "llms-txt-router"
+name = "llm-txt-worker-books"
 main = "src/index.js"
 compatibility_date = "2025-01-01"
 
