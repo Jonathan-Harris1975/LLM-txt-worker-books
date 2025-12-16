@@ -1,13 +1,13 @@
 export default {
-  async fetch(request, env, ctx) {
+  async fetch(request) {
     const url = new URL(request.url);
 
-    // Hard gate: only intercept the exact llms.txt path
+    // Absolute interception — no fallthrough
     if (
       url.hostname === "ebooks.jonathan-harris.online" &&
       url.pathname === "/llms.txt"
     ) {
-      return new Response(null, {
+      return new Response("", {
         status: 301,
         headers: {
           Location: "https://jonathan-harris.online/llms.txt",
@@ -16,7 +16,7 @@ export default {
       });
     }
 
-    // Everything else passes through untouched
+    // Explicit pass-through for everything else
     return fetch(request);
   }
 };
